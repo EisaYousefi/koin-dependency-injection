@@ -1,4 +1,5 @@
 package ir.eisa.koincource
+
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -30,18 +31,19 @@ class MainActivity : AppCompatActivity() {
         baseApp.users.getUser()
 
         lifecycleScope.launchWhenStarted {
-            mainViewModel.getPost().catch { e->
+            mainViewModel.getPost().catch { e ->
                 Log.d("main", "onCreate: ${e.message}")
-            }.collect {response->
+            }.collect { response ->
                 Log.d("main", "onCreate: $response ")
             }
         }
         insertToRoomDatabase()
         lifecycleScope.launchWhenStarted {
-            mainViewModel.getAllUser.catch {e->
+            mainViewModel.getAllUser.catch { e ->
                 Log.d("main", "onCreate:${e.message} ")
-            }.collect {
-                Log.d("main", "onCreate: $it")
+            }.collect { users ->
+                for (user in users)
+                    Log.d("main", "onCreate: ${user.id}     ${user.name}  ")
             }
         }
     }
@@ -49,10 +51,10 @@ class MainActivity : AppCompatActivity() {
     private fun insertToRoomDatabase() {
         binding.apply {
             save.setOnClickListener {
-                if(!TextUtils.isEmpty(name.text.toString())){
+                if (!TextUtils.isEmpty(name.text.toString())) {
                     mainViewModel.insert(User(name.text.toString()))
                     showMessage("Data added successfully..")
-                }else{
+                } else {
                     showMessage("please fill all the fields..")
                 }
             }
