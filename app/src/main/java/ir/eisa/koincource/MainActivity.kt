@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d("main", "onCreate:${e.message} ")
             }.collect { users ->
                 for (user in users)
-                    Log.d("main", "onCreate: ${user.id}     ${user.name}  ")
+                    Log.d("main", "onCreate: ${user.id} --> ${user.name}  ")
             }
         }
     }

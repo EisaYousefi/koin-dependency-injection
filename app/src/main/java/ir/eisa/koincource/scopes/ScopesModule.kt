@@ -9,7 +9,7 @@ import org.koin.dsl.scoped
 class ComponentA(){
     fun getA()
     {
-        Log.d("main", "getA")
+        Log.d("main", "getA -->test scope in koin ")
     }
 }
 

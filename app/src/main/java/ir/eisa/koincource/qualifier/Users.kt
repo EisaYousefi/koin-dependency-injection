@@ -7,7 +7,7 @@ import org.koin.dsl.module
 class Users(val fName:String , val lName:String) {
 
     fun getUser() {
-        Log.d("main", "getUser: $fName $lName")
+        Log.d("qualifier", "getUser: $fName $lName")
     }
 
 }
